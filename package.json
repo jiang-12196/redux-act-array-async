@@ -1,6 +1,6 @@
 {
-  "name": "redux-act-async",
-  "version": "1.7.0",
+  "name": "redux-act-array-async",
+  "version": "1.7.2",
   "license": "Apache-2.0",
   "description": "Reducing the boilerplate of redux asynchronous applications",
   "keywords": [
@@ -11,17 +11,17 @@
     "reducer"
   ],
   "main": "lib/index.js",
-  "homepage": "https://github.com/FredericHeem/redux-act-async",
+  "homepage": "https://github.com/jiang-12196/redux-act-array-async",
   "author": {
     "name": "Frederic Heem",
-    "url": "https://github.com/FredericHeem"
+    "url": "https://github.com/jiang-12196"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FredericHeem/redux-act-async"
+    "url": "https://github.com/jiang-12196/redux-act-array-async"
   },
   "bugs": {
-    "url": "https://github.com/FredericHeem/redux-act-async/issues"
+    "url": "https://github.com/jiang-12196/redux-act-array-async/issues"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",

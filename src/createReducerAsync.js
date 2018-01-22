@@ -7,8 +7,8 @@ const defaultsState = {
     error: null
 };
 
-export default function createReducerAsync(actionAsync, defaultState = defaultsState) {
-    return createReducer({
+function reducerFormater(actionAsync, defaultsState) {
+    return {
         [actionAsync.request]: (state, payload) => ({
             ...state,
             request: payload,
@@ -26,5 +26,20 @@ export default function createReducerAsync(actionAsync, defaultState = defaultsS
             error: payload.error
         }),
         [actionAsync.reset]: () => (defaultState)
-    }, defaultState);
+    };
+}
+
+export default function createREducerAsync(actionAsync, defaultsState = defaultsState) {
+    if (toString.call(actionAsync) === '[object Array]') {
+        const arr = actionAsync.reduce((acc, cur, index) => {
+            let accReducer = acc;
+            if (index === 1) {
+                accReducer = reducerFormater(acc, defaultsState);
+            }
+            const curReducer = reducerFormater(cur, defaultsState);
+            return Object.assign(accReducer, curReducer);
+        });
+        return createReducer(arr, defaultsState);
+    }
+    return createReducer(reducerFormater(actionAsync, defaultsState));
 }

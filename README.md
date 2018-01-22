@@ -1,27 +1,20 @@
-# redux-act-async
+# redux-act-array-async
 
-Create async actions and reducers based on [redux-act](https://github.com/pauldijou/redux-act)
+Create async multi actions and reducers based on [redux-act](https://github.com/pauldijou/redux-act)
 
 ## Install
 
 ```bash
-npm install redux-act-async --save
+npm install redux-act-array-async --save
+or
+yarn add redux-act-array-async
 ```
-
-## Badges
-
-[![Build Status](https://travis-ci.org/FredericHeem/redux-act-async.svg?branch=master)](https://travis-ci.org/FredericHeem/redux-act-async)
-
-[![codecov](https://codecov.io/gh/FredericHeem/redux-act-async/branch/master/graph/badge.svg)](https://codecov.io/gh/FredericHeem/redux-act-async)
-
-[![npm version](https://badge.fury.io/js/redux-act-async.svg)](https://badge.fury.io/js/redux-act-async)
-## Usage
 
 ```js
 
 import thunk from 'redux-thunk'
 import {createStore, applyMiddleware} from 'redux';
-import {createActionAsync, createReducerAsync} from 'redux-act-async';
+import {createActionAsync, createReducerAsync} from 'redux-act-array-async';
 
 // The async api to call, must be a function that returns a promise
 let user = {id: 8};
@@ -61,6 +54,23 @@ const store = createStore(reducer, applyMiddleware(thunk));
 
 await store.dispatch(login({username:'lolo', password: 'password'}));
 
+```
+
+## multi action
+
+```js
+function actionA() {
+  return Promise.resolve();
+}
+
+function actionB() {
+  return Promise.resolve();
+}
+
+const actionAAsync = createActionAsync('ACTION_TYPE', actionA);
+const actionBAsync = createActionAsync('ACTION_TYPE', actionB);
+
+const Reducer = createReducerAsync([actionAAsync, actionBAsync]);
 ```
 
 ## Legacy redux
@@ -203,6 +213,3 @@ const actionOptions = {
 const loginAction = createActionAsync('LOGIN', api, actionOptions);
 
 ```
-## Who is using this library ?
-
-This library has been extracted originally from [starhack.it](https://github.com/FredericHeem/starhackit), a React/Node Full Stack Starter Kit.
